@@ -8,6 +8,6 @@ export const Header  = () => {
           Dio Bank
         </div>
       </Center>
-  </Box>
+    </Box>
   )
 }
