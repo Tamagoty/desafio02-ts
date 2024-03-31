@@ -2,13 +2,13 @@ import {
   ChakraProvider,
 } from '@chakra-ui/react'
 import { Header } from './components/Header/Header';
-import { BoxLogin } from './components/BoxLogin/BoxLogin';
+import { Card } from './components/Card/Card';
 
 function App() {
   return (
     <ChakraProvider>
       <Header />
-      <BoxLogin />
+      <Card />
     </ChakraProvider>
   );
 }

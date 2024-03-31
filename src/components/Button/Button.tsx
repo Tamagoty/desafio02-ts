@@ -1,17 +1,24 @@
 import { 
-  ChakraProvider,
+  Button,
 } from '@chakra-ui/react'
 
-interface FRButton {
-  clickEvent: () => {},
-  label: string
+interface IDButton {
+  onClick: () => void;
 }
 
 
-export const Button = ({clickEvent, label}: FRButton) => {
+export const DButton = ({onClick}: IDButton) => {
   return (
-    <ChakraProvider>
-      
-    </ ChakraProvider>
+    <Button 
+      onClick={onClick}
+      colorScheme='teal'
+      size="sm"
+      width="100%"
+      marginTop="5px"
+      >
+        Entrar
+      </Button>
   )
 }
+
+export default DButton
