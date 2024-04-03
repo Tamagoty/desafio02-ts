@@ -5,18 +5,38 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Conta from './pages/Conta';
 import { Layout } from './components/Layout';
+import ContaInfo from './pages/ContaInfo';
+import { createContext } from 'react';
+
+interface IAppContext {
+  user: string;
+}
+
+const AppContext = createContext({} as IAppContext);
+
+const AppContextProvider = ({ children }: any) => {
+  const user = 'Ette'
+  return (
+    <AppContext.Provider value={{ user }}>
+      {children}
+    </AppContext.Provider>
+  )
+}
 
 function App() {
   return (
     <BrowserRouter>
-      <ChakraProvider>
-        <Layout>
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/conta' element={<Conta />} />
-          </Routes>
-        </Layout>
-      </ChakraProvider>
+      <AppContextProvider>
+        <ChakraProvider>
+          <Layout>
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path='/conta/:id' element={<Conta />} />
+              <Route path='/containfo' element={<ContaInfo />} />
+            </Routes>
+          </Layout>
+        </ChakraProvider>
+      </AppContextProvider>
     </BrowserRouter>
   );
 }
