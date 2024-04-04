@@ -1,8 +1,9 @@
 import { Center, SimpleGrid, Spinner } from "@chakra-ui/react";
 import { useParams, useNavigate } from "react-router-dom";
 import CardInfo from "../components/CardInfo/CardInfo";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { api } from "../api";
+import { AppContext } from "../components/AppContext/AppContext";
 
 interface UserData {
   email: string,
@@ -15,7 +16,13 @@ interface UserData {
 const Conta = () => {
 
   const [userData, setUserData] = useState<null | UserData>()
-  
+  const { id } = useParams()
+  const navigate = useNavigate()
+
+  const { isLoggedIn } = useContext(AppContext)
+
+  !isLoggedIn && navigate('/')
+
 
   useEffect(() => {
     const getData = async () => {
@@ -27,10 +34,9 @@ const Conta = () => {
 
   const actualData = new Date()
 
-  const { id } = useParams()
-  const navigate = useNavigate()
+  
 
-  if(userData && id !== userData.id) {
+  if (userData && id !== userData.id) {
     navigate('/')
   }
 
@@ -47,25 +53,25 @@ const Conta = () => {
             (
               <>
                 <CardInfo
-                mainContent={
-                  `Bem vindo, ${userData?.name}`
-                }
-                content={
-                  `${actualData.getUTCDay()} / 
-                  ${actualData.getUTCMonth()+1} / 
+                  mainContent={
+                    `Bem vindo, ${userData?.name}`
+                  }
+                  content={
+                    `${actualData.getUTCDay()} / 
+                  ${actualData.getUTCMonth() + 1} / 
                   ${actualData.getUTCFullYear()} 
                   ${actualData.getHours()}:
                   ${actualData.getMinutes()}`
-                }
-              />
-              <CardInfo
-                mainContent={
-                  `Saldo`
-                }
-                content={
-                  `R$ ${userData.balance}`
-                }
-              />
+                  }
+                />
+                <CardInfo
+                  mainContent={
+                    `Saldo`
+                  }
+                  content={
+                    `R$ ${userData.balance}`
+                  }
+                />
               </>
             )
         }

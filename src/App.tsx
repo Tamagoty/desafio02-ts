@@ -1,27 +1,10 @@
-import {
-  ChakraProvider,
-} from '@chakra-ui/react'
+import { ChakraProvider } from '@chakra-ui/react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Conta from './pages/Conta';
 import { Layout } from './components/Layout';
 import ContaInfo from './pages/ContaInfo';
-import { createContext } from 'react';
-
-interface IAppContext {
-  user: string;
-}
-
-const AppContext = createContext({} as IAppContext);
-
-const AppContextProvider = ({ children }: any) => {
-  const user = 'Ette'
-  return (
-    <AppContext.Provider value={{ user }}>
-      {children}
-    </AppContext.Provider>
-  )
-}
+import { AppContextProvider } from './components/AppContext/AppContext';
 
 function App() {
   return (
