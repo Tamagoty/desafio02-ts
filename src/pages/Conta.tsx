@@ -23,7 +23,6 @@ const Conta = () => {
 
   !isLoggedIn && navigate('/')
 
-
   useEffect(() => {
     const getData = async () => {
       const data: any | UserData = await api
@@ -33,8 +32,6 @@ const Conta = () => {
   }, [])
 
   const actualData = new Date()
-
-  
 
   if (userData && id !== userData.id) {
     navigate('/')
